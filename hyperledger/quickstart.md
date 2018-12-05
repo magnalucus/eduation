@@ -17,7 +17,9 @@ $ sudo apt-get install curl
 (Docker의 버전이 오래된 경우 오류 발생가능. 기존의 구버전의  Docker를 삭제하고 재설치)
 
 $ sudo apt-get remove docker docker-engine docker.io
+
 $ curl -fsSL https://get.docker.com/ | sudo sh
+
 $ sudo apt install docker-compose
 
 ## Docker 권한설정
