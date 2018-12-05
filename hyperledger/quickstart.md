@@ -488,7 +488,7 @@ AND 조건 : Org1 멤버중의 하나 && Org2 멤버중의 하나
     
     
 ## Invoke
-### a에서 10을 빼고 b에는 이체하는 체인코드 invoke
+### a의 10을 b로 이체하는 체인코드 invoke
 
     export CHANNEL_NAME=mychannel
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
@@ -498,3 +498,6 @@ AND 조건 : Org1 멤버중의 하나 && Org2 멤버중의 하나
     peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C $CHANNEL_NAME -n mycc --peerAddresses peer0.org1.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses peer0.org2.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c '{"Args":["invoke","a","b","10"]}'
 
 
+결과
+
+    2018-12-05 12:22:01.254 UTC [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001 Chaincode invoke successful. result: status:200
