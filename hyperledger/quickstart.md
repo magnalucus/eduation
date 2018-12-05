@@ -213,13 +213,14 @@ Generating anchor peer update for Org1MSP
 
 
 
-# Fabric 네트워크 시작
+# Fabric 네트워크 시작 
 
-네트워크 시작
+Fabric 네트워크 시작
 
     $ docker-compose -f docker-compose-cli.yaml up -d
     
 결과
+
     Creating network "net_byfn" with the default driver
     Creating volume "net_peer0.org2.example.com" with default driver
     Creating volume "net_peer1.org2.example.com" with default driver
@@ -251,4 +252,54 @@ Generating anchor peer update for Org1MSP
 
 
 
+## docker cli 환경변수
+
+peer0.org1 환경변수
+
+    export CHANNEL_NAME=mychannel
+    CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    CORE_PEER_ADDRESS=peer0.org1.example.com:7051
+    CORE_PEER_LOCALMSPID="Org1MSP"
+    CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+
+
+peer1.org1 환경변수
+
+    export CHANNEL_NAME=mychannel
+    CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    CORE_PEER_ADDRESS=peer1.org1.example.com:7051
+    CORE_PEER_LOCALMSPID="Org1MSP"
+    CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
+
+
+peer0.org2 환경변수
+
+    export CHANNEL_NAME=mychannel
+    CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+    CORE_PEER_ADDRESS=peer0.org2.example.com:7051
+    CORE_PEER_LOCALMSPID="Org2MSP"
+    CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+
+
+peer1.org2 환경변수 설정
+
+    export CHANNEL_NAME=mychannel
+    CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+    CORE_PEER_ADDRESS=peer1.org2.example.com:7051
+    CORE_PEER_LOCALMSPID="Org2MSP"
+    CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt
+
+
+
+## Fabric 실습
+Fabric cli 컨테이너로 접속
+
+    $ docker exec -it cli bash
+
+
+이 컨테이너에 처음 접속한 것이므로 초기상태임. 새로운 프로그램이나 설정들은 새로 해야 함.
+
+환경변수설정
+
+    $ export CHANNEL_NAME=mychannel
 
