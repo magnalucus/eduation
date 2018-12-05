@@ -158,6 +158,7 @@ Generating Orderer Genesis block
 디렉토리 channel-artifacts에 genesis.block 이 생성됨
 
 결과
+
     2018-12-05 19:21:56.301 EDT [common/tools/configtxgen] main -> INFO 001 Loading configuration
     2018-12-05 19:21:56.309 EDT [common/tools/configtxgen] doOutputBlock -> INFO 002 Generating genesis block
     2018-12-05 19:21:56.309 EDT [common/tools/configtxgen] doOutputBlock -> INFO 003 Writing genesis block
@@ -165,14 +166,17 @@ Generating Orderer Genesis block
 ## Channel configuration transaction 생성
 
 변수설정
+
     $ export CHANNEL_NAME=mychannel
 
 Generating channel configuration transaction 'channel.tx’
+
     $ ../bin/configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID $CHANNEL_NAME
 
 디렉토리 channel-artifacts에 channel.tx (channel configuration transaction)가 channel.tx 생성됨
 
 결과
+
     2018-12-05 09:39:41.270 UTC [common/tools/configtxgen] main -> INFO 001 Loading configuration
     2018-12-05 09:39:41.294 UTC [common/tools/configtxgen] doOutputChannelCreateTx -> INFO 002 Generating new channel configtx
     2018-12-05 09:39:41.295 UTC [common/tools/configtxgen] doOutputChannelCreateTx -> INFO 003 Writing new channel tx
@@ -188,6 +192,7 @@ Generating anchor peer update for Org1MSP
     $ ../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org1MSP
 
 결과
+
     2018-12-05 09:42:01.953 UTC [common/tools/configtxgen] main -> INFO 001 Loading configuration
     2018-12-05 09:42:01.977 UTC [common/tools/configtxgen] doOutputAnchorPeersUpdate -> INFO 002 Generating anchor peer update
     2018-12-05 09:42:01.978 UTC [common/tools/configtxgen] doOutputAnchorPeersUpdate -> INFO 003 Writing anchor peer update
@@ -198,6 +203,7 @@ Generating anchor peer update for Org1MSP
     $ ../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org2MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org2MSP
 
 결과
+
     2018-12-05 09:42:07.568 UTC [common/tools/configtxgen] main -> INFO 001 Loading configuration
     2018-12-05 09:42:07.591 UTC [common/tools/configtxgen] doOutputAnchorPeersUpdate -> INFO 002 Generating anchor peer update
     2018-12-05 09:42:07.591 UTC [common/tools/configtxgen] doOutputAnchorPeersUpdate -> INFO 003 Writing anchor peer update
