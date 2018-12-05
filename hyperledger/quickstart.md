@@ -1,3 +1,5 @@
+# 사전준비
+
 ## 개발환경
 * OS : Ubuntu 16.04 LTS
 * Curl : 7.47.0
@@ -79,4 +81,23 @@ Fabric Node.js SDK는 Python 2.7를 사용해야 npm 설정이 잘 작동합니�
 
     $ sudo apt-get install python
     $ python --version
+
+
+# Fabric 빌드
+
+# 소스를 받을 폴더 만들기
+    $ mkdir -p $GOPATH/src/github.com/hyperledger 
+    $ cd $GOPATH/github.com/hyperledger/
+
+## 소스 받기
+    $ git clone https://github.com/hyperledger/fabric
+    $ git clone https://github.com/hyperledger/fabric-ca
+
+## Fabric 빌드하기
+    $ cd $GOPATH/src/github.com/hyperledger/fabric
+    $ make native docker
+
+## Fabric-ca 빌드하기
+    $ cd $GOPATH /src/github.com/hyperledger/fabric-ca
+    $ make docker
 
