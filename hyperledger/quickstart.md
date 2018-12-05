@@ -501,3 +501,15 @@ AND 조건 : Org1 멤버중의 하나 && Org2 멤버중의 하나
 결과
 
     2018-12-05 12:22:01.254 UTC [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001 Chaincode invoke successful. result: status:200
+
+
+## Query 확인
+
+### Invoke의 결과로 a에 90이 저장됐는지 확인.
+
+    export CHANNEL_NAME=mychannel
+    CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    CORE_PEER_ADDRESS=peer0.org1.example.com:7051
+    CORE_PEER_LOCALMSPID="Org1MSP"
+    CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+    peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}'
