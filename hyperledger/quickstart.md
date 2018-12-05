@@ -11,26 +11,41 @@
 ````$ sudo apt-get update````
 
 ## Curl 설치
-$ sudo apt-get install curl
+````$ sudo apt-get install curl````
 
 ## Docker, Docker compose 설치
 (Docker의 버전이 오래된 경우 오류 발생가능. 기존의 구버전의  Docker를 삭제하고 재설치)
 
-$ sudo apt-get remove docker docker-engine docker.io
+````$ sudo apt-get remove docker docker-engine docker.io````
 
-$ curl -fsSL https://get.docker.com/ | sudo sh
+````$ curl -fsSL https://get.docker.com/ | sudo sh````
 
-$ sudo apt install docker-compose
+````$ sudo apt install docker-compose````
 
 ## Docker 권한설정
 Docker가 root 권한으로 설치되므로 일반 사용자도 Docker를 사용하기 위해서는 권한을 설정해야 합니다.
 
 로그아웃 후 다시 로그인을 하면 권한이 적용됩니다.
 
-$ sudo usermod -aG docker $USER
+    $ sudo usermod -aG docker $USER
 
 
 ## Docker 설치 확인
-$ docker version
+    $ docker version
+    $ docker run hello-world
+## Golang 설치
+하이퍼렛저는 Go Lang으로 개발되었습니다. Go version 1.10이상이어야 합니다.
 
-$ docker run hello-world
+    $ cd
+    $ wget https://dl.google.com/go/go1.11.1.linux-amd64.tar.gz
+    $ tar zxvf go1.11.1.linux-amd64.tar.gz
+
+Go를 설치하면 path를 설정해야 제대로 go를 사용할 수 있습니다. 로그인시 불러들이는 .profile 파일을 수정합니다.
+
+    $ vi ~/.profile
+
+    > export GOROOT=$HOME/go
+    > export GOPATH=$HOME/workspace
+    > export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
+
+PATH가 적용되려면 로그아웃후 다시 로그인 해야합니다.
