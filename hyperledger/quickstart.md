@@ -441,6 +441,35 @@ peer0.org1에서 체인코드를 초기화한다.
     CORE_PEER_ADDRESS=peer0.org1.example.com:7051
     CORE_PEER_LOCALMSPID="Org1MSP"
     CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
-    peer chaincode instantiate -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C $CHANNEL_NAME -n mycc -v 1.0 -c '{"Args":["init","a", "100", "b","200"]}' -P “AND ('Org1MSP.member','Org2MSP.member')"
+    peer chaincode instantiate -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C $CHANNEL_NAME -n mycc -v 1.0 -c '{"Args":["init","a", "100", "b","200"]}' -P "AND ('Org1MSP.member','Org2MSP.member')"
 
+
+결과
+
+    2018-12-05 11:51:13.950 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 001 Using default escc
+    2018-12-05 11:51:13.950 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
+
+
+## Chaincode-level Endorsement 정책
+Endorsement 정책
+
+-P 옵션 : Endorsement 정책. 
+
+"AND('Org1.member', 'Org2.member’)”
+
+AND 조건 : Org1 멤버중의 하나 && Org2 멤버중의 하나
+
+* "AND('Org1.peer', 'Org2.peer’)” : AND 조건 : Org1 Peer 중의 하나 && Org2 Peer중의 하나
+* OR('Org1.member', 'Org2.member’) : OR 조건 : Org1 멤버중의 하나 || Org2 멤버중의 하나
+* OR(   AND('Org1.member', 'Org2.member’), AND('Org1.member', 'Org3.member’), AND('Org2.member', 'Org3.member’)  )
+
+
+| 'Org0.admin’ |any administrator of the Org0 MSP|
+|-----|-----|
+| 'Org1.member’|any member of the Org1 MSP|
+| 'Org1.client’|any client of the Org1 MSP|
+| 'Org1.peer’|any peer of the Org1 MSP|
+
+
+## 초기화 결과 Query
 
