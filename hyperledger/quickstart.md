@@ -103,7 +103,7 @@ Fabric Node.js SDK는 Python 2.7를 사용해야 npm 설정이 잘 작동합니�
 
 
 ## 빌드된 이미지 확인하기
-    $ docker image
+    $ docker images
 
 
 
