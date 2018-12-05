@@ -49,3 +49,23 @@ Go를 설치하면 path를 설정해야 제대로 go를 사용할 수 있습니
     export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 
 PATH가 적용되려면 로그아웃후 다시 로그인 해야합니다.
+
+
+## Node.ks 설치
+Node.js를 이용한 하이퍼렛저 패브릭 SDK로 개발을 한다면 Node.js를 설치해야합니다.
+
+버전은 8.9을 사용해야합니다. 9.x는 아직 지원하지 않습니다.
+
+초기설정대로 apt install nodejs 로 설치하면 낮은 버전이 설치됩니다.
+
+버전을 8.X 로 설치하기 위해서 PPA 를 등록하고 설치합니다.
+
+    $ cd ~
+    $ curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
+    $ sudo bash nodesource_setup.sh
+    $ sudo apt-get install nodejs
+    $ sudo npm install npm
+
+
+## 개발도구 설치
+    $ sudo apt-get install gcc g++ make
