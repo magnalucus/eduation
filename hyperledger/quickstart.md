@@ -434,7 +434,8 @@ https://github.com/hyperledger/fabric-samples/blob/release-1.3/chaincode/chainco
 
 
 ## Chaincode 초기화
-peer0.org1에서 체인ㅋ코드를 촏기화한다.
+peer0.org1에서 체인코드를 초기화한다.
+
     export CHANNEL_NAME=mychannel
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
     CORE_PEER_ADDRESS=peer0.org1.example.com:7051
