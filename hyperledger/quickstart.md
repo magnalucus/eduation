@@ -8,7 +8,7 @@
 * Python : 2.7
 
 ## 업데이트
-$ sudo apt-get update
+````$ sudo apt-get update````
 
 ## Curl 설치
 $ sudo apt-get install curl
@@ -28,3 +28,9 @@ Docker가 root 권한으로 설치되므로 일반 사용자도 Docker를 사용
 로그아웃 후 다시 로그인을 하면 권한이 적용됩니다.
 
 $ sudo usermod -aG docker $USER
+
+
+## Docker 설치 확인
+$ docker version
+
+$ docker run hello-world
