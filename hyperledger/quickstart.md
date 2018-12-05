@@ -464,11 +464,12 @@ AND 조건 : Org1 멤버중의 하나 && Org2 멤버중의 하나
 * OR(   AND('Org1.member', 'Org2.member’), AND('Org1.member', 'Org3.member’), AND('Org2.member', 'Org3.member’)  )
 
 
-| 'Org0.admin’ |any administrator of the Org0 MSP|
+|옵션|설명|
 |-----|-----|
-| 'Org1.member’|any member of the Org1 MSP|
-| 'Org1.client’|any client of the Org1 MSP|
-| 'Org1.peer’|any peer of the Org1 MSP|
+| 'Org0.admin’ |Org0 MSP의 어드민중 아무나|
+| 'Org1.member’|Org1 MSP의 멤버중 아무나|
+| 'Org1.client’|Org1 MSP 클라이언트중 아무나|
+| 'Org1.peer’|Org1 MSP 피어중 |
 
 
 ## 초기화 결과 Query
