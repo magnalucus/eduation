@@ -213,4 +213,42 @@ Generating anchor peer update for Org1MSP
 
 
 
+# Fabric 네트워크 시작
+
+네트워크 시작
+
+    $ docker-compose -f docker-compose-cli.yaml up -d
+    
+결과
+    Creating network "net_byfn" with the default driver
+    Creating volume "net_peer0.org2.example.com" with default driver
+    Creating volume "net_peer1.org2.example.com" with default driver
+    Creating volume "net_peer1.org1.example.com" with default driver
+    Creating volume "net_peer0.org1.example.com" with default driver
+    Creating volume "net_orderer.example.com" with default driver
+    Creating peer0.org1.example.com
+    Creating peer0.org2.example.com
+    Creating orderer.example.com
+    Creating peer1.org2.example.com
+    Creating peer1.org1.example.com
+    Creating cli
+    
+    
+이미지 확인
+
+    $ docker ps
+
+결과
+
+    CONTAINER ID        IMAGE                               COMMAND             CREATED             STATUS              PORTS                                              NAMES
+    8f5103e26d79        hyperledger/fabric-tools:latest     "/bin/bash"         49 seconds ago      Up 48 seconds                                                          cli
+    35cfe9c7b062        hyperledger/fabric-peer:latest      "peer node start"   54 seconds ago      Up 51 seconds       0.0.0.0:8051->7051/tcp, 0.0.0.0:8053->7053/tcp     peer1.org1.example.com
+    1ef857b24afc        hyperledger/fabric-peer:latest      "peer node start"   54 seconds ago      Up 49 seconds       0.0.0.0:10051->7051/tcp, 0.0.0.0:10053->7053/tcp   peer1.org2.example.com
+    d85a5bcd4855        hyperledger/fabric-orderer:latest   "orderer"           54 seconds ago      Up 50 seconds       0.0.0.0:7050->7050/tcp                             orderer.example.com
+    f36dad7aa063        hyperledger/fabric-peer:latest      "peer node start"   54 seconds ago      Up 52 seconds       0.0.0.0:9051->7051/tcp, 0.0.0.0:9053->7053/tcp     peer0.org2.example.com
+    15abb3e17781        hyperledger/fabric-peer:latest      "peer node start"   54 seconds ago      Up 52 seconds       0.0.0.0:7051->7051/tcp, 0.0.0.0:7053->7053/tcp     peer0.org1.example.com
+
+
+
+
 
