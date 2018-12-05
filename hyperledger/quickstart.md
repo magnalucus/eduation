@@ -67,6 +67,7 @@ Node.js를 이용한 하이퍼렛저 패브릭 SDK로 개발을 한다면 Node.j
     $ sudo bash nodesource_setup.sh
     $ sudo apt-get install nodejs
     $ sudo npm install npm
+    $ sudo chown -R $USER:$(id -gn $USER) /home/ubuntu/.config 
 
 
 ## 개발도구 설치
@@ -546,4 +547,61 @@ Query
     90
     
     
-    
+***
+
+# Hyperledger Explorer
+
+## 사전설치
+
+nodejs 8.14.x (9.x 버전은 지원하지 않음), PostgreSQL 9.5 or greater, Jq[https://stedolan.github.io/jq/]
+
+    $ sudo apt install -y postgresql jq
+
+
+### Hyperledger Explorer 설치
+
+    $ cd
+    $ git clone -b release-3.7 https://github.com/hyperledger/blockchain-explorer
+
+
+### postgresql 접속 설정
+
+    $ vi ~/blockchain-explorer/app/explorerconfig.json
+
+
+### DB 생성
+
+    $ cd ~/blockchain-explorer/app/persistence/fabric/postgreSQL/db
+    $ ./createdb.sh
+
+
+### DB 생성확인
+
+    $ sudo -u postgres psql
+    postgres=# \l
+
+
+### 접속종료
+
+    postgres-# \q
+
+
+### Explorer에 인증서 경로 지정
+
+    $ vi ~/blockchain-explorer/app/platform/fabric/config.json
+    > :%s /fabric-path/\/home\/ubuntu/g
+
+### 오류수정
+
+    $ vi ~/blockchain-explorer/client/src/components/View/LandingPage.spec.js
+    > getBlockActivity: jest.fn(), // 추가
+
+### Explorer 빌드
+터미널을 하나 더 열고 아래를 실행한다.
+
+    $ cd ~/blockchain-explorer
+    $ npm install
+    $ cd ~/blockchain-explorer/client/
+    $ npm install
+    $ npm test -- -u --coverage
+    $ npm run build
