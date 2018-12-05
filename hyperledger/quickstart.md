@@ -597,7 +597,7 @@ nodejs 8.14.x (9.x 버전은 지원하지 않음), PostgreSQL 9.5 or greater, Jq
     > getBlockActivity: jest.fn(), // 추가
 
 ### Explorer 빌드
-터미널을 하나 더 열고 아래를 실행한다.
+터미널을 하나 더 열고 실행
 
     $ cd ~/blockchain-explorer
     $ npm install
@@ -605,3 +605,15 @@ nodejs 8.14.x (9.x 버전은 지원하지 않음), PostgreSQL 9.5 or greater, Jq
     $ npm install
     $ npm test -- -u --coverage
     $ npm run build
+
+
+### Explorer 실행
+    $ cd ~/blockchain-explorer
+    $ ./start.sh
+
+### Explorer 종료
+    $ cd ~/blockchain-explorer
+    $ ./stop.sh
+
+### 실시간 로그보기
+    $ tail -f blockchain-explorer/logs/console/console-2018-12-06.log
