@@ -513,3 +513,14 @@ AND 조건 : Org1 멤버중의 하나 && Org2 멤버중의 하나
     CORE_PEER_LOCALMSPID="Org1MSP"
     CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
     peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}'
+
+결과
+
+    900
+
+
+    peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}'
+
+결과
+
+    210
