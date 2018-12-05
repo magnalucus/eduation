@@ -114,27 +114,35 @@ Fabric Node.js SDK는 Python 2.7를 사용해야 npm 설정이 잘 작동합니�
 
 
 ## 인증서 설치
+
 first-network로 이동
+
     $ cd ~/fabric-samples/first-network/
 
 설정파일 : ~/fabric-samples/first-network/configtx.yaml
+
     $ vi ~/fabric-samples/first-network/configtx.yaml
 
 인증서 생성
+
     $ ../bin/cryptogen generate --config=./crypto-config.yaml
 
 
 결과
+
     org1.example.com
     org2.example.com
 
 
 ## Orderer Genesis Block 생성
+
 변수설정
+
     $ export FABRIC_CFG_PATH=$PWD
 
 
 Generating Orderer Genesis block
+
     $ ../bin/configtxgen -profile TwoOrgsOrdererGenesis -outputBlock ./channel-artifacts/genesis.block
 
 디렉토리 channel-artifacts에 genesis.block 이 생성됨
