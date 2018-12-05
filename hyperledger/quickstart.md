@@ -83,6 +83,8 @@ Fabric Node.js SDK는 Python 2.7를 사용해야 npm 설정이 잘 작동합니�
     $ python --version
 
 
+***
+
 # Fabric 빌드
 
 # 소스를 받을 폴더 만들기
@@ -107,10 +109,8 @@ Fabric Node.js SDK는 Python 2.7를 사용해야 npm 설정이 잘 작동합니�
 
 
 
+***    
 
-
-
-    
 # Fabric 실습
 
 ## 이미지 받기
@@ -211,6 +211,7 @@ Generating anchor peer update for Org1MSP
 디렉토리 channel-artifacts에 Org1MSPanchors.tx  Org2MSPanchors.tx 가 생성됨
 
 
+***
 
 
 # Fabric 네트워크 시작 
@@ -254,7 +255,7 @@ Fabric 네트워크 시작
 
 ## docker cli 환경변수
 
-peer0.org1 환경변수
+### peer0.org1 환경변수
 
     export CHANNEL_NAME=mychannel
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
@@ -263,7 +264,7 @@ peer0.org1 환경변수
     CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
 
 
-peer1.org1 환경변수
+### peer1.org1 환경변수
 
     export CHANNEL_NAME=mychannel
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
@@ -272,7 +273,7 @@ peer1.org1 환경변수
     CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
 
 
-peer0.org2 환경변수
+### peer0.org2 환경변수
 
     export CHANNEL_NAME=mychannel
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
@@ -281,7 +282,7 @@ peer0.org2 환경변수
     CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
 
 
-peer1.org2 환경변수 설정
+### peer1.org2 환경변수
 
     export CHANNEL_NAME=mychannel
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
@@ -310,7 +311,7 @@ Fabric cli 컨테이너로 접속
 
 ## Fabric 채널 생성
 
-peer0.org1 에서 mychannel 생성
+### peer0.org1 에서 mychannel 생성
 
     export CHANNEL_NAME=mychannel
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
@@ -325,7 +326,7 @@ peer0.org1 에서 mychannel 생성
 
 ## 피어를 채널에 참여시킴
 
-peer0.org1 을 mychannel에 참여
+### peer0.org1 을 mychannel에 참여
 
     export CHANNEL_NAME=mychannel
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
@@ -341,7 +342,7 @@ peer0.org1 을 mychannel에 참여
     2018-12-05 11:00:24.930 UTC [channelCmd] executeJoin -> INFO 002 Successfully submitted proposal to join channel
 
 
-peer1.org1 을 mychannel에 참여
+### peer1.org1 을 mychannel에 참여
 
 
     export CHANNEL_NAME=mychannel
@@ -352,7 +353,7 @@ peer1.org1 을 mychannel에 참여
     peer channel join -b $CHANNEL_NAME.block
     
     
-peer0.org2 을 mychannel에 참여
+### peer0.org2 을 mychannel에 참여
 
     export CHANNEL_NAME=mychannel
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
@@ -363,7 +364,7 @@ peer0.org2 을 mychannel에 참여
 
 
 
-peer1.org2 을 mychannel에 참여
+### peer1.org2 을 mychannel에 참여
 
 
     export CHANNEL_NAME=mychannel
@@ -372,3 +373,24 @@ peer1.org2 을 mychannel에 참여
     CORE_PEER_LOCALMSPID="Org2MSP"
     CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt
     peer channel join -b $CHANNEL_NAME.block    
+
+
+## 앵커피어 업데이트
+
+모든 피어가 채널에 참여했으면 각 조직(Org1, Org2)별로 Anchor 피어 설정을 하며, Peer0.org1, Peer0.org2를 Anchor 피어로 업데이트한다
+
+### peer0.org1 Anchor Peer 설정
+
+    export CHANNEL_NAME=mychannel
+    CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    CORE_PEER_ADDRESS=peer0.org1.example.com:7051
+    CORE_PEER_LOCALMSPID="Org1MSP"
+    CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+    peer channel update -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/Org1MSPanchors.tx --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+
+
+결과
+
+    2018-12-05 11:13:02.551 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
+    2018-12-05 11:13:02.565 UTC [channelCmd] update -> INFO 002 Successfully submitted channel update
