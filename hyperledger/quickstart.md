@@ -69,3 +69,14 @@ Node.js를 이용한 하이퍼렛저 패브릭 SDK로 개발을 한다면 Node.j
 
 ## 개발도구 설치
     $ sudo apt-get install gcc g++ make
+    
+## Python 설치
+우분투 16.04 버전에는 Python 3.5.1이 설치됩니다. 
+
+Fabric Node.js SDK는 Python 2.7를 사용해야 npm 설정이 잘 작동합니다. 
+
+다음과 같이 2.7버전을 설치하고 버전을 확인합니다.
+
+    $ sudo apt-get install python
+    $ python --version
+
