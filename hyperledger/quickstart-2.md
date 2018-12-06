@@ -86,8 +86,6 @@ Fabric Node.js SDK는 Python 2.7를 사용해야 npm 설정이 잘 작동합니�
 
 ***
 
-## 로그아웃 후 다시 로그인
-
 
 ***    
 
@@ -168,7 +166,7 @@ Generating channel configuration transaction 'channel.tx’
 
     $ export CHANNEL_NAME=mychannel
 
-### Generating anchor peer update for Org1MSP
+Generating anchor peer update for Org1MSP
 
     $ ../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org1MSP
 
@@ -179,7 +177,7 @@ Generating channel configuration transaction 'channel.tx’
     2018-12-05 09:42:01.978 UTC [common/tools/configtxgen] doOutputAnchorPeersUpdate -> INFO 003 Writing anchor peer update
 
 
-### Generating anchor peer update for Org2MSP
+Generating anchor peer update for Org2MSP
 
     $ ../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org2MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org2MSP
 
@@ -232,18 +230,67 @@ Fabric 네트워크 시작
     15abb3e17781        hyperledger/fabric-peer:latest      "peer node start"   54 seconds ago      Up 52 seconds       0.0.0.0:7051->7051/tcp, 0.0.0.0:7053->7053/tcp     peer0.org1.example.com
 
 
-## 
+
+
+## docker cli 환경변수
+
+### peer0.org1 환경변수
+
+    export CHANNEL_NAME=mychannel
+    CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    CORE_PEER_ADDRESS=peer0.org1.example.com:7051
+    CORE_PEER_LOCALMSPID="Org1MSP"
+    CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+
+
+### peer1.org1 환경변수
+
+    export CHANNEL_NAME=mychannel
+    CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    CORE_PEER_ADDRESS=peer1.org1.example.com:7051
+    CORE_PEER_LOCALMSPID="Org1MSP"
+    CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
+
+
+### peer0.org2 환경변수
+
+    export CHANNEL_NAME=mychannel
+    CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+    CORE_PEER_ADDRESS=peer0.org2.example.com:7051
+    CORE_PEER_LOCALMSPID="Org2MSP"
+    CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+
+
+### peer1.org2 환경변수
+
+    export CHANNEL_NAME=mychannel
+    CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+    CORE_PEER_ADDRESS=peer1.org2.example.com:7051
+    CORE_PEER_LOCALMSPID="Org2MSP"
+    CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt
+
 
 
 ## Fabric 실습
+Fabric cli 컨테이너로 접속
+
+    $ docker exec -it cli bash
+
+
+결과
+
+    root@8f5103e26d79:/opt/gopath/src/github.com/hyperledger/fabric/peer#
+
+이 컨테이너에 처음 접속한 것이므로 초기상태임. 새로운 프로그램이나 설정들은 새로 해야 함.
+
+환경변수설정
+
+    $ export CHANNEL_NAME=mychannel
+
 
 ## Fabric 채널 생성
 
-### peer0.org1 접속
-    $ docker exec -it peer0.org1.example.com bash
-
 ### peer0.org1 에서 mychannel 생성
-
 
     export CHANNEL_NAME=mychannel
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
