@@ -236,23 +236,9 @@ Fabric 네트워크 시작
 
 
 ## Fabric 실습
-Fabric cli 컨테이너로 접속
-
-    $ docker exec -it cli bash
-
-
-결과
-
-    root@8f5103e26d79:/opt/gopath/src/github.com/hyperledger/fabric/peer#
-
-이 컨테이너에 처음 접속한 것이므로 초기상태임. 새로운 프로그램이나 설정들은 새로 해야 함.
-
-환경변수설정
-
-    $ export CHANNEL_NAME=mychannel
-
 
 ## Fabric 채널 생성
+
 ### peer0.org1 접속
     $ docker exec -it peer0.org1.example.com bash
 
