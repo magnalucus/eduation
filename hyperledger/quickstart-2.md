@@ -595,3 +595,46 @@ nodejs 8.14.x (9.x 버전은 지원하지 않음), PostgreSQL 9.5 or greater, Jq
 
 ### 실시간 로그보기
     $ tail -f blockchain-explorer/logs/console/console-2018-12-06.log
+    
+# 실시간 로그 확인하기
+
+## ssh 창을 4개를 띄움.
+### 1번창
+
+    $ docker exec -it cli bash
+    
+### 2번창
+
+    $ docker logs -f orderer.example.com
+
+### 3번창
+
+    $ docker logs -f peer0.org1.example.com
+
+### 4번창
+
+    $ docker logs -f peer0.org2.example.com
+
+### 1번창에서 Invoke
+### b의 10을 a로 이체하는 체인코드 invoke
+
+    export CHANNEL_NAME=mychannel
+    CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    CORE_PEER_ADDRESS=peer0.org1.example.com:7051
+    CORE_PEER_LOCALMSPID="Org1MSP"
+    CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+    peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C $CHANNEL_NAME -n mycc --peerAddresses peer0.org1.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses peer0.org2.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c '{"Args":["invoke","b","a","10"]}'
+
+
+### 2,3,4번창의 로그를 확인
+
+## 1번창에서 조회 Query 실행
+
+    export CHANNEL_NAME=mychannel
+    CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    CORE_PEER_ADDRESS=peer0.org1.example.com:7051
+    CORE_PEER_LOCALMSPID="Org1MSP"
+    CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+    peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}'
+    
+### 2,3,4번창의 로그를 확인
